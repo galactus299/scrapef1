@@ -16,7 +16,7 @@ class News():
         for elements in r1:
             try:
                 link = elements.find(class_='f1-cc').get('href')
-                link=link+"https://www.formula1.com"
+                link="https://www.formula1.com"+link
                 image_link = elements.find(class_='f1-cc--image').find(class_='f1-cc--photo').find('source').get(
                     'data-srcset')
                 z = elements.find(class_='f1-cc--caption')
