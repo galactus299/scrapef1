@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-
+import json
 
 class News():
     url = "https://www.formula1.com/en/latest/all.html"
@@ -41,6 +41,9 @@ class News():
 
 
 
-x=News()
 
-print(x.items)
+
+
+
+
+

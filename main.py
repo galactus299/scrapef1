@@ -5,6 +5,7 @@ app = FastAPI()
 
 @app.get("/data")
 def data():
-    s=News()
-    data= json.dumps(s.items)
-    return data
+    s = News()
+    # data = json.dumps(s.items, indent=4)
+    return s.items
+
