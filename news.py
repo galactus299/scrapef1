@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import  re
 import json
 
 class News():
@@ -18,15 +19,17 @@ class News():
                 link = elements.find(class_='f1-cc').get('href')
                 link="https://www.formula1.com"+link
                 image_link = elements.find(class_='f1-cc--image').find(class_='f1-cc--photo').find('source').get(
-                    'data-srcset')
+                    'data-srcset').split
                 z = elements.find(class_='f1-cc--caption')
-                type = z.find('p', class_='misc--tag').get_text()
+                type = z.find('p', class_='misc--tag').get_text().strip()
                 title = z.find('p', class_='f1--s no-margin').get_text()
+                title=re.sub(r"[^a-zA-Z0-9]","",title)
 
                 item = {'link': link, 'image_link': image_link, 'type': type, 'title': title}
                 self.items['elements'].append(item)
             except:
                 pass
+
 
 
 
