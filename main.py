@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from news import News
-import json
 from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

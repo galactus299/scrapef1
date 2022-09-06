@@ -19,11 +19,11 @@ class News():
                 link = elements.find(class_='f1-cc').get('href')
                 link="https://www.formula1.com"+link
                 image_link = elements.find(class_='f1-cc--image').find(class_='f1-cc--photo').find('source').get(
-                    'data-srcset').split
+                    'data-srcset').split(',')[0]
                 z = elements.find(class_='f1-cc--caption')
-                type = z.find('p', class_='misc--tag').get_text().strip()
+                type = z.find('p', class_='misc--tag').get_text().split()
                 title = z.find('p', class_='f1--s no-margin').get_text()
-                title=re.sub(r"[^a-zA-Z0-9]","",title)
+                title=re.sub('[^A-Za-z0-9]+'," ",title)
 
                 item = {'link': link, 'image_link': image_link, 'type': type, 'title': title}
                 self.items['elements'].append(item)
