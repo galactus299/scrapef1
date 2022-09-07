@@ -13,6 +13,7 @@ class News():
         req = requests.get(self.url)
         res = BeautifulSoup(req.text, 'html.parser')
         r1 = res.find_all(class_='f1-latest-listing--grid-item')
+        self.items['elements']=[]
 
         for elements in r1:
             try:
@@ -22,12 +23,14 @@ class News():
                     'data-srcset').split(',')[0]
                 z = elements.find(class_='f1-cc--caption')
                 type = z.find('p', class_='misc--tag').get_text().split()
-                title = z.find('p', class_='f1--s no-margin').get_text()
+                title = z.find('p', class_=['f1--s' ,'no-margin']).get_text()
                 title=re.sub('[^A-Za-z0-9]+'," ",title)
 
                 item = {'link': link, 'image_link': image_link, 'type': type, 'title': title}
                 self.items['elements'].append(item)
-            except:
+            except Exception as e:
+                print("Oops!", e, "occurred.")
+                print("Next entry.")
                 pass
 
 
